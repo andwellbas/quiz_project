@@ -2,12 +2,12 @@ from pymongo import MongoClient
 import os
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
 
-db_connection_string = os.getenv("db_conn_str")
+def delete_quiz():
+    load_dotenv(find_dotenv())
 
+    db_connection_string = os.getenv("db_conn_str")
 
-def main():
     cluster = MongoClient(db_connection_string)
     db = cluster["DB_Quiz"]
     collection = db["Collection_Quiz"]
@@ -31,7 +31,3 @@ def main():
 
     elif quiz_id not in quiz_id_list:
         print(f"Quiz ID {quiz_id} not found.")
-
-
-if __name__ == '__main__':
-    main()

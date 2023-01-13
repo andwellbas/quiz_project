@@ -1,13 +1,15 @@
 from pymongo import MongoClient
 import random
 import os
+import delete_quiz
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
 Create_New_Quiz = 1
 Select_An_Existing_Quiz = 2
-Quit_Program = 3
+Delete_Quiz = 3
+Quit_Program = 4
 
 View_Quizzes = 1
 Find_Quizzes = 2
@@ -29,11 +31,12 @@ def main():
               "Choose the desired function.\n"
               "1) Create a new quiz.\n"
               "2) Take the quiz.\n"
-              "3) Quit.\n"
+              "3) Delete quiz.\n"
+              "4) Quit.\n"
               "~~~~~~~~~~~~~~~MENU~~~~~~~~~~~~~~~\n")
         while True:         # The loop will repeat until choice becomes an integer
             try:
-                choice = int(input("Enter the required option (1-3): "))
+                choice = int(input("Enter the required option (1-4): "))
                 break
             except ValueError:
                 print("Enter integer number.")
@@ -46,8 +49,11 @@ def main():
 
         elif choice > Quit_Program or choice < Create_New_Quiz:
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-                  "Enter an option from 1 to 3.\n"
+                  "Enter an option from 1 to 4.\n"
                   "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+
+        elif choice == Delete_Quiz:
+            delete_quiz.delete_quiz()
 
 
 def create_new_quiz_function():
